@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "jest --verbose",
+    "test": "jest --verbose --detectOpenHandles",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^17.1.0",
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
+    "jest-preset-angular": "^14.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
@@ -40,4 +41,3 @@
     ]
   }
 }
-

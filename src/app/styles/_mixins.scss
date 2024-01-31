@@ -1,0 +1,9 @@
+@mixin mediaMixin($minWidth, $fontWeight) {
+    @media (min-width: $minWidth) {
+        .single-letter {
+          font-size: $fontWeight;
+        }
+        .single-word {
+          height: $fontWeight;
+        }}
+  }
