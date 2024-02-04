@@ -1,0 +1,15 @@
+:host{
+    display: flex;
+    height: 100dvh;
+    position: relative;
+    margin-left:70px ;
+    background-color: #333333;
+}
+
+canvas{
+    align-self: center;
+    margin: 0 auto;
+    width: 600px;
+    height: 600px;
+    border: 1px solid black;
+}

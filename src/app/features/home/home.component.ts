@@ -5,11 +5,12 @@ import {
   HostListener,
   ViewChild,
 } from '@angular/core';
+import { Section2Component } from './section2/section2.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [Section2Component],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,7 +41,7 @@ export class HomeComponent {
 
   onCanvasClick($event: MouseEvent): void {
     this.mouse.x = $event.x;
-    this.mouse.y = $event.y;
+    this.mouse.y = $event.y + window.scrollY - window.innerHeight;
     this.init();
   }
 
@@ -123,7 +124,7 @@ class Particle {
   }
 
   draw() {
-    this.ctx.fillStyle = 'red';
+    this.ctx.fillStyle = 'rgb(220, 44, 44)';
     this.ctx.beginPath();
     // this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     this.ctx.fill();
