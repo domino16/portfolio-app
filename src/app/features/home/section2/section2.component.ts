@@ -89,7 +89,6 @@ export class Section2Component implements AfterViewInit {
         if (brightness > 95) {
           this.particles.push(
             new Particle(
-              this.canvas.nativeElement,
               this.context,
               x + Math.round(Math.random() * 5),
               y + Math.round(Math.random() * 5)
@@ -149,7 +148,6 @@ class Particle {
   friction = 0.89;
 
   constructor(
-    canvas: HTMLCanvasElement,
     conext: CanvasRenderingContext2D,
     x: number,
     y: number
