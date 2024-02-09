@@ -1,5 +1,4 @@
-<app-sidebar></app-sidebar>
-<!-- <app-menu></app-menu> -->
-<div style="height: 200px;"></div>
+<app-sidebar></app-sidebar> 
+@if (isMenuOpen$ | async){<app-menu></app-menu>}
 <app-home></app-home>
 <router-outlet />

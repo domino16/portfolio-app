@@ -3,13 +3,13 @@
     height: 100dvh;
     position: relative;
     margin-left:70px ;
-    background-color: #333333;
+    background-color: #111111;
 }
 
 canvas{
     align-self: center;
     margin: 0 auto;
-    width: 600px;
-    height: 600px;
-    border: 1px solid black;
+    width: calc(100vw - 100px);
+    height: 100vh
+    // border: 1px solid black;
 }

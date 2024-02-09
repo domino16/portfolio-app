@@ -1,15 +1,22 @@
-import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AsyncPipe, NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { LayoutService } from '../../../core/services/layout.service';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, AsyncPipe],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
-  isMenuActive:boolean = false;
+  private readonly layoutService  = inject(LayoutService)
+  isMenuActive$ = this.layoutService.isMenuOpen$;
+  
+
+  toggleMenu(){
+    this.layoutService.toggleMenu();
+  }
 
 }

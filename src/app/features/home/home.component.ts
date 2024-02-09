@@ -40,8 +40,8 @@ export class HomeComponent {
   }
 
   onCanvasClick($event: MouseEvent): void {
-    this.mouse.x = $event.x;
-    this.mouse.y = $event.y + window.scrollY - window.innerHeight;
+    this.mouse.x = $event.offsetX;
+    this.mouse.y = $event.offsetY;
     this.init();
   }
 

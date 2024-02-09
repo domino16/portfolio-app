@@ -1,17 +1,20 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { MenuComponent } from './shared/components/menu/menu.component';
 import { HomeComponent } from './features/home/home.component';
+import { AsyncPipe } from '@angular/common';
+import { LayoutService } from './core/services/layout.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,SidebarComponent, MenuComponent, HomeComponent],
+  imports: [RouterOutlet,SidebarComponent, MenuComponent, HomeComponent, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  title = 'portfolio';
+  private readonly layoutService = inject(LayoutService);
+  isMenuOpen$ = this.layoutService.isMenuOpen$;
 }

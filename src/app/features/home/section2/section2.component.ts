@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  HostListener,
   Renderer2,
   ViewChild,
   inject,
@@ -22,14 +23,34 @@ export class Section2Component implements AfterViewInit {
   context!: CanvasRenderingContext2D;
   image = new Image();
   particles: Particle[] = [];
+  mouse: { x: number; y: number } = { x: 0, y: 0 };
 
-  ngAfterViewInit(): void {
-    this.image.src = '../../../../assets/man.png';
-    this.canvas.nativeElement.width = 800;
-    this.canvas.nativeElement.height = 800;
+  @HostListener('window:resize')
+  setCanvasSite() {
     this.context = this.canvas?.nativeElement.getContext('2d', {
       willReadFrequently: true,
     })!;
+    this.canvas.nativeElement.width = window.innerWidth - 70;
+    this.canvas.nativeElement.height = window.innerHeight;
+    this.particles = [];
+    this.context.drawImage(
+      this.image,
+      0,
+      0,
+      this.canvas.nativeElement.width,
+      this.canvas.nativeElement.height
+    );
+    this.init();
+  }
+
+  ngAfterViewInit(): void {
+    this.image.src = '../../../../assets/man.png';
+    this.canvas.nativeElement.width = window.innerWidth - 70;
+    this.canvas.nativeElement.height = window.innerHeight;
+    this.context = this.canvas?.nativeElement.getContext('2d', {
+      willReadFrequently: true,
+    })!;
+
     this.renderer.listen(this.image, 'load', () => {
       this.context.drawImage(
         this.image,
@@ -39,15 +60,13 @@ export class Section2Component implements AfterViewInit {
         this.canvas.nativeElement.height
       );
 
-      this.init(); 
+      this.init();
       this.animate();
     });
-
-   
   }
 
   init() {
-    const gap = 4;
+    const gap = 3;
     const pixels = this.context.getImageData(
       0,
       0,
@@ -63,44 +82,71 @@ export class Section2Component implements AfterViewInit {
 
     for (let y = 0; y < this.canvas.nativeElement.height; y += gap) {
       for (let x = 0; x < this.canvas.nativeElement.width; x += gap) {
-        const index = (y * this.canvas.nativeElement.height + x) * 4;
-        const brightness = (pixels[index + 1] + pixels[index + 2]) / 2;
+        const index = (y * this.canvas.nativeElement.width + x) * 4;
+        // const brightness = (pixels[index + 1] + pixels[index + 2]) / 2;
+        const brightness = pixels[index + 2] * 1;
 
-        if (brightness > 95 && Math.random() > 0.6) {
+        if (brightness > 95) {
           this.particles.push(
-            new Particle(this.canvas.nativeElement, this.context, x, y)
+            new Particle(
+              this.canvas.nativeElement,
+              this.context,
+              x + Math.round(Math.random() * 5),
+              y + Math.round(Math.random() * 5)
+            )
           );
         }
       }
     }
-
   }
 
   animate() {
-    this.context.clearRect(
-      0,
-      0,
-      this.canvas.nativeElement.width,
-      this.canvas.nativeElement.height
-    );
-    this.particles.forEach((particle) => {
-      particle.draw();
-      particle.move(window.scrollY);
-    });
+    setTimeout(() => {
+      this.mouse = { x: 0, y: 0 };
+    }, 1);
+
+    if (window.scrollY < window.innerHeight - 10) {
+      this.context.clearRect(
+        0,
+        0,
+        this.canvas.nativeElement.width,
+        this.canvas.nativeElement.height
+      );
+      this.particles.forEach((particle) => {
+        particle.draw();
+        particle.move(window.scrollY, this.mouse);
+      });
+    }
     requestAnimationFrame(this.animate.bind(this));
+  }
+
+  setMousePosition(event: MouseEvent) {
+    this.mouse = { x: event.offsetX, y: event.offsetY };
   }
 }
 
 class Particle {
   context: CanvasRenderingContext2D;
-  canvas: HTMLCanvasElement;
   originalX = 0;
   originalY = 0;
   x = 0;
   y = 0;
   velocityX = 0;
   velocityY = 0;
-  size = Math.random() * 3 + 1;
+  size = Math.random() * 2;
+  onMouseInteractionMaxDistance = 0;
+  angle = 0;
+  speedX = 0;
+  speedY = 0;
+  touched = false;
+  pointPositionWhenMouseTouched = { x: 0, y: 0 };
+  reachedMax = false;
+  targetX = 0;
+  targetY = 0;
+  vx = 0;
+  vy = 0;
+  spring = 0.011;
+  friction = 0.89;
 
   constructor(
     canvas: HTMLCanvasElement,
@@ -108,7 +154,6 @@ class Particle {
     x: number,
     y: number
   ) {
-    this.canvas = canvas;
     this.context = conext;
     this.originalX = x;
     this.originalY = y;
@@ -116,30 +161,90 @@ class Particle {
     this.y = y;
   }
 
-  move(scrollTop: number) {
-    const maxDistance = scrollTop > 10 ? scrollTop / 2 : 0;
-    const dissipation = scrollTop > 10 ? scrollTop / 25 : 0;
+  move(scrollTop: number, mousePosition: { x: number; y: number }) {
+    const mouseDistanceX = mousePosition.x - this.x;
+    const mouseDistanceY = mousePosition.y - this.y;
+    const distanceMouseFromPoint = Math.sqrt(
+      mouseDistanceX ** 2 + mouseDistanceY ** 2
+    );
 
-    this.velocityX = Math.random() * dissipation - dissipation / 2;
-    this.velocityY = Math.random() * dissipation - dissipation / 2;
-
-    this.x += this.velocityX;
-    this.y += this.velocityY;
-
-    if (this.originalX - this.x > maxDistance) {
-      this.x = Math.round(this.x);
-      this.x += 1;
-    } else if (this.originalX - this.x < maxDistance * -1) {
-      this.x = Math.round(this.x);
-      this.x -= 1;
+    if (!this.touched && distanceMouseFromPoint < 15) {
+      this.onMouseInteractionMaxDistance = Math.random() * 150;
+      this.angle = Math.random() * Math.PI * 2;
+      this.speedX = Math.cos(this.angle) * 2;
+      this.speedY = Math.sin(this.angle) * 2;
+      this.touched = true;
+      this.reachedMax = false;
+      this.targetX = this.x;
+      this.targetY = this.y;
+      this.pointPositionWhenMouseTouched = { x: this.x, y: this.y };
     }
 
-    if (this.originalY - this.y > maxDistance) {
-      this.y = Math.round(this.y);
-      this.y += 1;
-    } else if (this.originalY - this.y < maxDistance * -1) {
-      this.y = Math.round(this.y);
-      this.y -= 1;
+    if (!this.touched) {
+      const maxDistance = scrollTop >= 0 ? scrollTop / 2 : 0;
+      const dissipation = scrollTop >= 0 ? scrollTop / 100 : 0;
+      const pointMoveSpeed = 0.1;
+
+      this.velocityX =
+        Math.random() < pointMoveSpeed
+          ? Math.random() * dissipation - dissipation / 2
+          : this.velocityX;
+      this.velocityY =
+        Math.random() < pointMoveSpeed
+          ? Math.random() * dissipation - dissipation / 2
+          : this.velocityY;
+
+      this.x += this.velocityX;
+      this.y += this.velocityY;
+
+      const distanceX = this.originalX - this.x;
+      const distanceY = this.originalY - this.y;
+
+      if (distanceX > maxDistance || distanceX < maxDistance * -1) {
+        this.x += distanceX / 20;
+      }
+
+      if (distanceY > maxDistance || distanceY < maxDistance * -1) {
+        this.y += distanceY / 20;
+      }
+    } else {
+      const distanceXFromPointWhenTouched =
+        this.pointPositionWhenMouseTouched.x - this.x;
+      const distanceYFromPointWhenTouched =
+        this.pointPositionWhenMouseTouched.y - this.y;
+      const distanceFromMouseHandledPoint = Math.sqrt(
+        distanceXFromPointWhenTouched ** 2 + distanceYFromPointWhenTouched ** 2
+      );
+      if (
+        !this.reachedMax &&
+        this.onMouseInteractionMaxDistance > distanceFromMouseHandledPoint
+      ) {
+        const tx = (this.onMouseInteractionMaxDistance * this.speedX) / 20;
+        const ty = (this.onMouseInteractionMaxDistance * this.speedY) / 20;
+        this.x += tx;
+        this.y += ty;
+      } else {
+        this.reachedMax = true;
+      }
+
+      if (this.reachedMax) {
+        const dx = this.targetX - this.x,
+          dy = this.targetY - this.y,
+          ax = dx * this.spring,
+          ay = dy * this.spring;
+
+        this.vx += ax;
+        this.vy += ay;
+        this.vx *= this.friction;
+        this.vy *= this.friction;
+        this.x += this.vx;
+        this.y += this.vy;
+      }
+
+      if (Math.round(distanceFromMouseHandledPoint) <= 0 && this.reachedMax) {
+        this.touched = false;
+        this.reachedMax = false;
+      }
     }
   }
 
