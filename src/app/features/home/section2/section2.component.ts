@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostListener,
@@ -14,6 +15,7 @@ import {
   imports: [],
   templateUrl: './section2.component.html',
   styleUrl: './section2.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Section2Component implements AfterViewInit {
   private readonly renderer = inject(Renderer2);

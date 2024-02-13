@@ -6,11 +6,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Section2Component } from './section2/section2.component';
+import { Section3Component } from './section3/section3.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [Section2Component],
+  imports: [Section2Component, Section3Component],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
