@@ -1,0 +1,49 @@
+@import "../../../styles/colors";
+
+.magnetic-button {
+  display: flex;
+  position: relative;
+
+  .button-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 0.8rem 1.6rem;
+    color: $primary-color;
+    font-size: 2vw;
+    font-weight: 400;
+    border: solid 2px $primary-color;
+    border-radius: 9999px;
+    transform: translate(-50%, -50%);
+
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+      height 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background-color: $primary-color;
+      transform: translate(-50%, -50%);
+      border-radius: 9999px;
+      filter: blur(1.5rem);
+      z-index: -1;
+      transition: width 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+        height 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &:hover {
+      color: black;
+      border-color: transparent;
+      &:after {
+        content: "";
+        padding: 50%;
+      }
+    }
+  }
+}

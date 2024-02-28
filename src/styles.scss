@@ -1,8 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+:after,
+:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Catamaran";
+  src: url("./assets/fonts/Catamaran/Catamaran-VariableFont_wght.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Protests";
+  src: url("./assets/fonts/Protest_Revolution/ProtestRevolution-Regular.ttf")
+    format("truetype");
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  color: #e0eeee;
+}

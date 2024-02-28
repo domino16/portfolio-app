@@ -1,14 +1,113 @@
-:host{
-    display: flex;
-    height: 100dvh;
-    position: relative;
-    margin-left:70px ;
-    background-color: #111111;
+@import "../../../styles/mixins";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    height: 100vh;
+  }
 }
 
-canvas{
-    align-self: center;
-    margin: 0 auto;
-    width: calc(100vw - 100px);
-    height: 100vh
+
+.header-left {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12em;
+  @media (min-width: 768px) {
+    width: 50%;
+    margin-top: 0;
+  }
+
+  .welcome-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: "Catamaran";
+
+    &::before {
+      @include htmlTag("<HTML>", -80px, unset, unset, -30px);
+    }
+
+    &::after {
+      @include htmlTag("<BODY>", -100px, unset, unset, -40px);
+    }
+
+    h1 {
+      position: relative;
+      font-size: 12vw;
+      line-height: 10vw;
+      letter-spacing: -3px;
+      display: flex;
+      flex-direction: column;
+      font-weight: 900;
+
+      @media (min-width: 768px) {
+        font-size: 5vw;
+        line-height: 4vw;
+      }
+
+      &::before {
+        @include htmlTag("<H1>", -60px, unset, unset, -20px);
+      }
+
+      &::after {
+        @include htmlTag("</H1>", unset, -40px, -60px, unset);
+      }
+    }
+
+    p {
+      position: relative;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding-top: 4rem;
+
+      &::before {
+        @include htmlTag("<P>", 3rem, unset, unset, -1rem);
+      }
+
+      &::after {
+        @include htmlTag("</P>", unset, unset, -1rem, unset);
+      }
+    }
+  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    margin-top: 0;
+  }
+
+  canvas {
+    width: 900px;
+    height: 600px;
+    transform: scale(0.7);
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 900px) {
+      transform: scale(0.8);
+    }
+
+    @media (min-width: 1024px) {
+      transform: scale(0.9);
+    }
+
+    @media (min-width: 1280px) {
+      transform: scale(1);
+    }
+  }
 }

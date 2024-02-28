@@ -15,7 +15,7 @@ import {
   imports: [],
   templateUrl: './section2.component.html',
   styleUrl: './section2.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Section2Component implements AfterViewInit {
   private readonly renderer = inject(Renderer2);
@@ -26,14 +26,20 @@ export class Section2Component implements AfterViewInit {
   image = new Image();
   particles: Particle[] = [];
   mouse: { x: number; y: number } = { x: 0, y: 0 };
+  lastRender = 0;
+  isMobile: boolean = false;
+
+  frameRate = 1000 / 50; // 50 frames per  secound
+  moveTimeout!: ReturnType<typeof setTimeout>;
 
   @HostListener('window:resize')
-  setCanvasSite() {
+  onWindowResize() {
+    this.checkIfIsMobile();
     this.context = this.canvas?.nativeElement.getContext('2d', {
       willReadFrequently: true,
     })!;
-    this.canvas.nativeElement.width = window.innerWidth - 70;
-    this.canvas.nativeElement.height = window.innerHeight;
+    this.canvas.nativeElement.width = 900;
+    this.canvas.nativeElement.height = 600;
     this.particles = [];
     this.context.drawImage(
       this.image,
@@ -46,9 +52,10 @@ export class Section2Component implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.checkIfIsMobile();
     this.image.src = '../../../../assets/man.png';
-    this.canvas.nativeElement.width = window.innerWidth - 70;
-    this.canvas.nativeElement.height = window.innerHeight;
+    this.canvas.nativeElement.width = 900;
+    this.canvas.nativeElement.height = 600;
     this.context = this.canvas?.nativeElement.getContext('2d', {
       willReadFrequently: true,
     })!;
@@ -63,7 +70,7 @@ export class Section2Component implements AfterViewInit {
       );
 
       this.init();
-      this.animate();
+      requestAnimationFrame(this.animate.bind(this));
     });
   }
 
@@ -88,7 +95,7 @@ export class Section2Component implements AfterViewInit {
         // const brightness = (pixels[index + 1] + pixels[index + 2]) / 2;
         const brightness = pixels[index + 2] * 1;
 
-        if (brightness > 95) {
+        if (brightness > 93) {
           this.particles.push(
             new Particle(
               this.context,
@@ -101,28 +108,36 @@ export class Section2Component implements AfterViewInit {
     }
   }
 
-  animate() {
-    setTimeout(() => {
-      this.mouse = { x: 0, y: 0 };
-    }, 1);
-
-    if (window.scrollY < window.innerHeight - 10) {
-      this.context.clearRect(
-        0,
-        0,
-        this.canvas.nativeElement.width,
-        this.canvas.nativeElement.height
-      );
-      this.particles.forEach((particle) => {
-        particle.draw();
-        particle.move(window.scrollY, this.mouse);
-      });
+  animate(now: number) {
+    if (now - this.lastRender >= this.frameRate) {
+      this.lastRender = now;
+      if (window.scrollY < window.innerHeight - 10) {
+        this.context.clearRect(
+          0,
+          0,
+          this.canvas.nativeElement.width,
+          this.canvas.nativeElement.height
+        );
+        for (const particle of this.particles) {
+          particle.draw();
+          particle.move(window.scrollY, this.mouse);
+        }
+      }
     }
+
     requestAnimationFrame(this.animate.bind(this));
   }
 
   setMousePosition(event: MouseEvent) {
     this.mouse = { x: event.offsetX, y: event.offsetY };
+    clearTimeout(this.moveTimeout);
+    this.moveTimeout = setTimeout(() => {
+      this.mouse = { x: 0, y: 0 };
+    }, 50);
+  }
+
+  checkIfIsMobile() {
+    window.innerWidth <= 768 ? (this.isMobile = true) : (this.isMobile = false);
   }
 }
 
@@ -149,11 +164,7 @@ class Particle {
   spring = 0.011;
   friction = 0.89;
 
-  constructor(
-    conext: CanvasRenderingContext2D,
-    x: number,
-    y: number
-  ) {
+  constructor(conext: CanvasRenderingContext2D, x: number, y: number) {
     this.context = conext;
     this.originalX = x;
     this.originalY = y;
@@ -249,7 +260,7 @@ class Particle {
   }
 
   draw() {
-    this.context.fillStyle = 'white';
+    this.context.fillStyle = '#e0eeee';
     this.context.beginPath();
     this.context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     this.context.fill();

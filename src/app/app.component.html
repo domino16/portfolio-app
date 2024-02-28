@@ -1,3 +1,9 @@
-<app-sidebar></app-sidebar> @if (isMenuOpen$ | async){<app-menu></app-menu>}
-<app-home></app-home>
-<router-outlet />
+<app-sidebar></app-sidebar> @if (isMenuOpen$ |
+async){<app-menu></app-menu>}
+<app-background-smoke></app-background-smoke>
+<div class="wrapper">
+  <router-outlet />
+</div>
+<div appMagneticCursor class="cb-cursor" #cursor>
+  <div class="cb-cursor-text" #cursorText></div>
+</div>

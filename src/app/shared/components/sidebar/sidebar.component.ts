@@ -1,11 +1,12 @@
 import { AsyncPipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { LayoutService } from '../../../core/services/layout.service';
+import { MagneticElementToCursorDirective } from '../../directives/magnetic-element-to-cursor.directive';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [NgClass, AsyncPipe],
+  imports: [NgClass, AsyncPipe, MagneticElementToCursorDirective],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

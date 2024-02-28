@@ -2,10 +2,9 @@
 @import "../../../styles/colors";
 $font-weight: 25vw;
 
-
 @media (min-width: 1000px) {
-  $font-weight:8.5vw;
- }
+  $font-weight: 8.5vw;
+}
 
 :host {
   display: flex;
@@ -17,11 +16,15 @@ $font-weight: 25vw;
   z-index: 2;
 }
 
-.divide-line{
+.divide-line {
+  display: none;
   width: 1px;
   height: 100vh;
-  background-color: rgba($color: $secondary-color, $alpha: .3) ;
-margin-left: 70px;
+  background-color: rgba($color: $secondary-color, $alpha: 0.3);
+  margin-left: 70px;
+  @media (min-width: 1024px) {
+    display: block;
+  }
 }
 
 ul,
@@ -34,7 +37,7 @@ ul li {
 .single-letter {
   display: inline-block;
   font-family: "Big Shoulders Stencil Text", cursive;
-  color: white;
+  color: $pure-white;
   font-size: $font-weight;
   font-weight: bolder;
   letter-spacing: -4px;
@@ -117,9 +120,8 @@ ul li > .single-word .single-letter:nth-child(1) {
   transition-delay: 0.15s;
 }
 
-  @include mediaMixin(400px, 16vw);
-  @include mediaMixin(580px, 13vw);
-  @include mediaMixin(768px, 10vw);
-  @include mediaMixin(1000px, 8.5vw);
-  @include mediaMixin(1280px, 7vw);
-
+@include mediaMixin(400px, 16vw);
+@include mediaMixin(580px, 13vw);
+@include mediaMixin(768px, 10vw);
+@include mediaMixin(1000px, 8.5vw);
+@include mediaMixin(1280px, 7vw);

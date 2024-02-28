@@ -1,9 +1,23 @@
 @mixin mediaMixin($minWidth, $fontWeight) {
-    @media (min-width: $minWidth) {
-        .single-letter {
-          font-size: $fontWeight;
-        }
-        .single-word {
-          height: $fontWeight;
-        }}
+  @media (min-width: $minWidth) {
+    .single-letter {
+      font-size: $fontWeight;
+    }
+    .single-word {
+      height: $fontWeight;
+    }
   }
+}
+
+@mixin htmlTag($text, $top, $right, $bottom, $left) {
+  content: $text;
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  font-size: 0.85rem;
+  font-family: "Protests", cursive;
+  color: #666566;
+  letter-spacing: 3px;
+}
