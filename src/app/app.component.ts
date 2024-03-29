@@ -15,7 +15,7 @@ import { HomeComponent } from './features/home/home.component';
 import { AsyncPipe } from '@angular/common';
 import { LayoutService } from './core/services/layout.service';
 import { BackgroundSmokeComponent } from './features/background-smoke/background-smoke.component';
-import { MagneticCursorDirective } from './shared/directives/magnetic-cursor.directive';
+import { MagneticCursorDirective } from './shared/directives/cursor/magnetic-cursor.directive';
 import gsap from 'gsap';
 import { ProjectsComponent } from './features/projects/projects.component';
 export class CursorOptions {

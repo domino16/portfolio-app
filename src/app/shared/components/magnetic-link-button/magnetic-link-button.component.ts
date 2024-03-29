@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { MagneticElementToCursorDirective } from '../../directives/magnetic-element-to-cursor.directive';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { MagneticElementToCursorDirective } from '../../directives/cursor/magnetic-element-to-cursor.directive';
 
 @Component({
   selector: 'app-magnetic-link-button',
@@ -8,12 +8,12 @@ import { MagneticElementToCursorDirective } from '../../directives/magnetic-elem
   templateUrl: './magnetic-link-button.component.html',
   styleUrl: './magnetic-link-button.component.scss',
 })
-export class MagneticLinkButtonComponent implements AfterViewInit {
+export class MagneticLinkButtonComponent {
   buttonWidth: number = 0;
 
-  @ViewChild('button') button!: ElementRef<HTMLSpanElement>;
+  @Input('btnText') btnText!: string;
 
-  ngAfterViewInit(): void {}
+  @ViewChild('button') button!: ElementRef<HTMLSpanElement>;
 
   onMouseEnter() {
     this.button.nativeElement.style.height =
@@ -21,6 +21,6 @@ export class MagneticLinkButtonComponent implements AfterViewInit {
   }
 
   onMouseLeave() {
-    this.button.nativeElement.style.height = '50px';
+    this.button.nativeElement.style.height = '58px';
   }
 }

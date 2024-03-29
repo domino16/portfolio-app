@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { CursorOptions } from '../../app.component';
+import { CursorOptions } from '../../../app.component';
 import { gsap } from 'gsap';
 import { Router } from '@angular/router';
 

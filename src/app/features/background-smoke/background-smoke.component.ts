@@ -102,10 +102,10 @@ export class BackgroundSmokeComponent {
     // window.addEventListener('mouseup', () => this.onPointerUp());
     // window.addEventListener('touchend', () => this.onPointerUp());
 
-    document.querySelectorAll('[data-cursor]').forEach((el) => {
+    document.querySelectorAll('[data-cursor]').forEach((el) => {;
       el.addEventListener('mouseenter', () => {
-        // self.setState(el.getAttribute('data-cursor')!);
         this.isMouseOverButton = true;
+        console.log(true);
       });
       el.addEventListener('mouseleave', () => {
         this.isMouseOverButton = false;
@@ -156,6 +156,7 @@ export class BackgroundSmokeComponent {
     `
     );
 
+    //change background color in gl_FragColor
     const displayShader = this.compileShader(
       this.gl.FRAGMENT_SHADER,
       `
@@ -169,7 +170,7 @@ export class BackgroundSmokeComponent {
         uniform sampler2D uTexture;
     
         void main () {
-            gl_FragColor = texture2D(uTexture, vUv);
+          gl_FragColor = texture2D(uTexture, vUv) + vec4(0.0705, 0.0745, 0.082341, 1.0);
         }
     `
     );

@@ -192,8 +192,8 @@ class Particle {
     }
 
     if (!this.touched) {
-      const maxDistance = scrollTop >= 0 ? scrollTop / 2 : 0;
-      const dissipation = scrollTop >= 0 ? scrollTop / 100 : 0;
+      const maxDistance = scrollTop >= 0 ? scrollTop / 4 : 0;
+      const dissipation = scrollTop >= 0 ? scrollTop / 60 : 0;
       const pointMoveSpeed = 0.1;
 
       this.velocityX =

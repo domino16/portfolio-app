@@ -1,0 +1,74 @@
+@import "../../../styles/colors";
+@import "../../../styles/mixins";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  font-family: "manrope";
+}
+
+h3 {
+  position: relative;
+  font-size: 8vw;
+  text-wrap: nowrap;
+  text-align: center;
+  margin: 50px 0;
+  font-weight: bolder;
+  letter-spacing: -2px;
+  color: $dark-accent-color;
+
+  @media (min-width: 768px) {
+    font-size: 7.6vw;
+    letter-spacing: -4px;
+  }
+
+  &::before {
+    @include htmlTag("<HTML>", unset, 0px, -30px, unset);
+  }
+
+  &::after {
+    @include htmlTag("<BODY>", unset, 20px, -10px, unset);
+  }
+}
+
+.footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  position: relative;
+
+  &::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 4%;
+    right: 4%;
+    height: 1px;
+
+    background-color: rgba($color: #545050, $alpha: 0.5);
+  }
+
+  p {
+    margin-left: 2%;
+    font-size: 1.2rem;
+    text-wrap: nowrap;
+  }
+
+  .social-media-links {
+    margin-right: 2%;
+
+    a {
+      font-size: 1.4rem;
+      padding: 0 4px;
+    }
+
+    @media (min-width: 640px) {
+      margin-right: 4%;
+      a {
+        font-size: 1.4rem;
+        padding: 0 10px;
+      }
+    }
+  }
+}

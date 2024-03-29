@@ -31,8 +31,9 @@
     transform: scale(0);
     background: $primary-color;
     border-radius: 50%;
-    transition: transform 0.3s ease-in-out, opacity 0.1s ease-in-out,
-      filter 0.3s ease-in-out;
+    transition: transform 0.4s ease-in-out, opacity 0.1s ease-in-out,
+      filter 0.4s ease-in-out, width 0.4s ease-in-out, height 0.4s ease-in-out,
+      top 0.4s ease-in-out, left 0.4s ease-in-out;
   }
 
   &-text {
@@ -46,31 +47,15 @@
     justify-content: center;
     transform: scale(0) rotate(10deg);
     opacity: 0;
-    color: black;
+    color: $dark-accent-color;
 
     font-size: 16px;
     line-height: 20px;
     text-align: center;
     letter-spacing: -0.01em;
     transition: opacity 0.4s, transform 0.3s;
+    font-family: "Manrope";
   }
-
-  // &-image {
-  //   position: absolute;
-  //   width: 48px;
-  //   height: 48px;
-  //   left: -24px;
-  //   top: -24px;
-
-  //   background-position: center center;
-  //   background-size: cover;
-  //   background-repeat: no-repeat;
-  //   opacity: 0;
-  //   color: white;
-
-  //   border-radius: 50%;
-  //   transition: transform 0.3s;
-  // }
 
   &.-difference {
     @supports (mix-blend-mode: difference) {
@@ -133,27 +118,6 @@
       transition-duration: 0.2s;
     }
   }
-
-  // &.-image {
-  //   @extend .-normal;
-
-  //   &:before {
-  //     opacity: 0.85;
-  //     transform: scale(1.7);
-  //   }
-
-  //   #{$root} {
-  //     &-image {
-  //       opacity: 1;
-  //       transform: scale(1);
-  //     }
-  //   }
-
-  //   &.-active:before {
-  //     transform: scale(1.6);
-  //     transition-duration: 0.2s;
-  //   }
-  // }
 
   &.-opaque {
     @extend .-difference;

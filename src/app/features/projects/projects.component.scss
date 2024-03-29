@@ -1,4 +1,5 @@
 @import "../../styles/colors";
+@import "../../styles/mixins";
 
 :host {
   display: flex;
@@ -9,15 +10,99 @@
   padding-left: 0 5rem;
   width: 100%;
   height: 100%;
+  font-family: "Manrope", Courier, monospace;
 }
+.section-leading {
+  align-self: flex-start;
+  h2 {
+    position: relative;
+    align-self: start;
+    width: fit-content;
+    margin: 10vw 4vw 7vw 0;
+    font-size: 15vw;
+    line-height: 11vw;
+    font-weight: 900;
+    text-wrap: nowrap;
+    background: linear-gradient(
+      to right,
+      $pure-white 50%,
+      $dark-accent-color 50%
+    );
+    background-clip: text;
+    background-size: 200% 100%;
+    background-position-x: 100%;
+    color: transparent;
 
+    &::before {
+      font-weight: 100;
+      @include htmlTag("<H2>", -10vw, unset, unset, -2vw);
+    }
+
+    &::after {
+      font-weight: 100;
+      @include htmlTag("</H2>", unset, -4vw, -10vw, unset);
+    }
+
+    @media (min-width: 768px) {
+      font-size: 11.5vw;
+      line-height: 8.8vw;
+      margin: 6vw 4vw 4vw;
+
+      &::before {
+        font-weight: 100;
+        @include htmlTag("<H2>", -6vw, unset, unset, -2vw);
+      }
+
+      &::after {
+        font-weight: 100;
+        @include htmlTag("</H2>", unset, -4vw, -6vw, unset);
+      }
+    }
+  }
+
+  .subtitle {
+    display: inline-block;
+    position: relative;
+    margin: 0 0 10vw 4vw;
+    font-family: "Manrope";
+    font-size: 0.9rem;
+    letter-spacing: 2px calc(max);
+
+    @media (min-width: 768px) {
+      margin: 0 0 6vw 8vw;
+      font-size: 1.1rem;
+    }
+
+    &::before {
+      font-weight: 100;
+      @media (max-width: 1024px) {
+        @include htmlTag("<P>", -3vw, unset, unset, -3vw);
+      }
+
+      @media (min-width: 1024px) {
+        @include htmlTag("<P>", -1.5vw, unset, unset, -1.5vw);
+      }
+    }
+
+    &::after {
+      font-weight: 100;
+      @media (max-width: 1024px) {
+        @include htmlTag("</P>", unset, -3vw, -3vw, unset);
+      }
+
+      @media (min-width: 1024px) {
+        @include htmlTag("</P>", unset, -2vw, -1.5vw, unset);
+      }
+    }
+  }
+}
 .project {
   display: flex;
   align-items: center;
   width: 100%;
   height: 100%;
   padding: 2rem;
-  margin: 6rem 0;
+  margin: 2rem 0;
 
   .project-img {
     display: flex;
@@ -29,14 +114,14 @@
       width: 700px;
       height: 398px;
       border-radius: 15px;
-      box-shadow: rgba(155, 156, 159, 0.42) 0px 60px 123px -25px,
-        rgba(155, 156, 159, 0.08) 0px 35px 75px -35px;
+      box-shadow: rgba(122, 192, 229, 0.42) 0px 60px 123px -25px,
+        rgba(122, 192, 229, 0.08) 0px 35px 75px -35px;
       transform: perspective(800px) rotateY(25deg) scale(0.8) rotateX(10deg);
       filter: blur(0px);
       opacity: 1;
       transition: 0.6s ease all;
       &:hover {
-        box-shadow: 0px 19px 67px -38px rgba(155, 156, 159, 0.8);
+        box-shadow: 0px 19px 67px -38px rgba(122, 192, 229, 0.8);
         transform: perspective(800px) rotateY(-15deg) translateY(-50px)
           rotateX(10deg) scale(1);
         filter: blur(0.2px);
@@ -53,7 +138,7 @@
       opacity: 1;
       transition: 0.6s ease all;
       &:hover {
-        box-shadow: 0px 19px 67px -38px rgba(155, 156, 159, 0.8);
+        box-shadow: 0px 19px 67px -38px rgba(122, 192, 229, 0.8);
         transform: perspective(800px) rotateY(15deg) translateY(50px)
           rotateX(10deg) scale(1);
         filter: blur(0.2px);
@@ -77,5 +162,12 @@
 
   h2 {
     font-size: 3rem;
+  }
+}
+
+a {
+  display: flex;
+  app-magnetic-link-button {
+    padding: 50px;
   }
 }

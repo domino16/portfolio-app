@@ -1,3 +1,5 @@
+@import "./colors";
+
 @mixin mediaMixin($minWidth, $fontWeight) {
   @media (min-width: $minWidth) {
     .single-letter {
@@ -16,8 +18,12 @@
   right: $right;
   bottom: $bottom;
   left: $left;
-  font-size: 0.85rem;
+  font-size: 0.65rem;
   font-family: "Protests", cursive;
-  color: #666566;
+  color: $htmlTagColor;
   letter-spacing: 3px;
+
+  @media (min-width: 600px) {
+    font-size: 0.85rem;
+  }
 }

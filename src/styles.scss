@@ -20,10 +20,17 @@
     format("truetype");
 }
 
+@font-face {
+  font-family: "Manrope";
+  src: url("./assets/fonts/Manrope/Manrope-VariableFont_wght.ttf")
+    format("truetype");
+}
+
 html {
   overflow-x: hidden;
 }
 
 body {
   color: #e0eeee;
+  overflow-x: hidden;
 }

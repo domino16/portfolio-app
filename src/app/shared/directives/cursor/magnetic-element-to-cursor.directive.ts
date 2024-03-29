@@ -1,6 +1,6 @@
 import { Directive, ElementRef, EventEmitter, Input } from '@angular/core';
 import { gsap } from 'gsap';
-import { MagneticOptions } from '../../core/services/interfaces/magneticOptions';
+import { MagneticOptions } from '../../../core/services/interfaces/magneticOptions';
 
 @Directive({
   selector: '[appMagneticElementToCursor]',

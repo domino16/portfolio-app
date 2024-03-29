@@ -11,16 +11,20 @@
     position: absolute;
     padding: 0.8rem 1.6rem;
     color: $primary-color;
-    font-size: 2vw;
+    height: 58px;
+    font-size: 1.4rem;
     font-weight: 400;
+    text-wrap: nowrap;
     border: solid 2px $primary-color;
     border-radius: 9999px;
     transform: translate(-50%, -50%);
+    font-family: "Manrope", Courier, monospace;
 
     transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
       border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
       width 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-      height 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
     &:after {
       content: "";
       position: absolute;
@@ -34,7 +38,7 @@
       filter: blur(1.5rem);
       z-index: -1;
       transition: width 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-        height 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        height 0.15s cubic-bezier(0.4, 0, 0.2, 1), padding 0.2s;
     }
 
     &:hover {

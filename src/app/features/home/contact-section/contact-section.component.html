@@ -1,0 +1,23 @@
+<h2 appHeadingScroll>CONTACT</h2>
+<p>Let's create something extraordinary together.</p>
+
+<div class="wrapper">
+  <form>
+    <input type="text" placeholder="Name" data-cursor-text="Enter Name" />
+    <input type="email" placeholder="Email" data-cursor-text="Enter Email" />
+    <input type="text" placeholder="Subject" data-cursor-text="Enter Subject" />
+    <textarea placeholder="Message" data-cursor-text="Enter Message"></textarea>
+    <a href="">
+      <app-magnetic-link-button
+        btnText="Send"
+        data-cursor="-opaque"
+      ></app-magnetic-link-button
+    ></a>
+  </form>
+  <div class="map">
+    <google-map width="100%" height="100%" [center]="lodzCords" [options]="mapOptions">
+      <map-marker *ngFor="let marker of markers" [position]="marker.position">
+      </map-marker
+    ></google-map>
+  </div>
+</div>

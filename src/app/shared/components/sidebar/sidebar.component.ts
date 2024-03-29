@@ -1,7 +1,7 @@
 import { AsyncPipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { LayoutService } from '../../../core/services/layout.service';
-import { MagneticElementToCursorDirective } from '../../directives/magnetic-element-to-cursor.directive';
+import { MagneticElementToCursorDirective } from '../../directives/cursor/magnetic-element-to-cursor.directive';
 
 @Component({
   selector: 'app-sidebar',

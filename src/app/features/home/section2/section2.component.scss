@@ -13,7 +13,6 @@
   }
 }
 
-
 .header-left {
   height: 100%;
   width: 100%;
@@ -33,11 +32,11 @@
     font-family: "Catamaran";
 
     &::before {
-      @include htmlTag("<HTML>", -80px, unset, unset, -30px);
+      @include htmlTag("<BODY>", -80px, unset, unset, -30px);
     }
 
     &::after {
-      @include htmlTag("<BODY>", -100px, unset, unset, -40px);
+      @include htmlTag("<HTML>", -100px, unset, unset, -40px);
     }
 
     h1 {
