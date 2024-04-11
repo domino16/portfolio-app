@@ -10,14 +10,14 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-section2',
+  selector: 'app-intro',
   standalone: true,
   imports: [],
-  templateUrl: './section2.component.html',
-  styleUrl: './section2.component.scss',
+  templateUrl: './intro.component.html',
+  styleUrl: './intro.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Section2Component implements AfterViewInit {
+export class introComponent implements AfterViewInit {
   private readonly renderer = inject(Renderer2);
 
   @ViewChild('canvas')

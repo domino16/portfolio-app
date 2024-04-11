@@ -26,8 +26,14 @@
     format("truetype");
 }
 
+@font-face {
+  font-family: "Syne";
+  src: url("./assets/fonts/Syne/Syne-VariableFont_wght.ttf") format("truetype");
+}
+
 html {
   overflow-x: hidden;
+  font-family: "Manrope", sans-serif;
 }
 
 body {

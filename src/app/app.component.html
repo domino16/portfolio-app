@@ -1,4 +1,12 @@
-<app-sidebar></app-sidebar> @if (isMenuOpen$ | async){<app-menu></app-menu>}
+@if(isMenuOpen$ | async){
+<div class="loader" @slideFirstDiv></div>
+<div class="loader" @slideSecondDiv></div>
+}
+
+<app-sidebar></app-sidebar> @if (isMenuOpen$ | async){<app-menu
+  @openDelay
+></app-menu
+>}
 <app-background-smoke></app-background-smoke>
 <div class="wrapper">
   <router-outlet />

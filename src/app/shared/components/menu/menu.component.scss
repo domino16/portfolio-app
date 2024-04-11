@@ -20,7 +20,7 @@ $font-weight: 25vw;
   display: none;
   width: 1px;
   height: 100vh;
-  background-color: rgba($color: $secondary-color, $alpha: 0.3);
+  background-color: rgba($color: $dark-accent-color, $alpha: 0.3);
   margin-left: 70px;
   @media (min-width: 1024px) {
     display: block;
@@ -50,7 +50,7 @@ ul li {
 }
 
 ul li:nth-child(1) .single-word:nth-child(odd) .single-letter {
-  color: $secondary-color;
+  color: $dark-accent-color;
 }
 
 .single-word:nth-child(even) {
@@ -72,7 +72,7 @@ ul li:hover > .single-word:nth-child(even) .single-letter {
 
 .single-word:nth-child(even) .single-letter {
   transform: scale(0.5);
-  color: $primary-color;
+  color: $menu-hover-text-color;
 }
 
 ul li:hover > .single-word .single-letter:nth-child(1) {

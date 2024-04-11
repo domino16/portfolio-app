@@ -1,0 +1,286 @@
+@import "../../../styles/colors";
+@import "../../../styles/mixins";
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: $pure-white;
+  padding-left: 0 5rem;
+  width: 100%;
+  height: 100%;
+  font-family: "Manrope", Courier, monospace;
+}
+.section-leading {
+  align-self: flex-start;
+  h2 {
+    position: relative;
+    align-self: start;
+    width: fit-content;
+    margin: 10vw 4vw 7vw;
+    font-size: 15vw;
+    line-height: 11vw;
+    font-weight: 900;
+    text-wrap: nowrap;
+    background: linear-gradient(
+      to right,
+      $pure-white 50%,
+      $dark-accent-color 50%
+    );
+    background-clip: text;
+    background-size: 200% 100%;
+    background-position-x: 100%;
+    color: transparent;
+
+    &::before {
+      font-weight: 100;
+      @include htmlTag("<H2>", -10vw, unset, unset, -2vw);
+    }
+
+    &::after {
+      font-weight: 100;
+      @include htmlTag("</H2>", unset, -4vw, -10vw, unset);
+    }
+
+    @media (min-width: 768px) {
+      font-size: 11.5vw;
+      line-height: 9.5vw;
+      margin: 6vw 4vw 4vw;
+
+      &::before {
+        font-weight: 100;
+        @include htmlTag("<H2>", -6vw, unset, unset, -2vw);
+      }
+
+      &::after {
+        font-weight: 100;
+        @include htmlTag("</H2>", unset, -4vw, -6vw, unset);
+      }
+    }
+  }
+
+  .subtitle {
+    display: inline-block;
+    position: relative;
+    margin: 0 0 10vw 4vw;
+    font-family: "Manrope";
+    font-size: 0.9rem;
+    letter-spacing: 2px calc(max);
+
+    @media (min-width: 768px) {
+      margin: 0 0 6vw 8vw;
+      font-size: 1.1rem;
+    }
+
+    &::before {
+      font-weight: 100;
+      @media (max-width: 1024px) {
+        @include htmlTag("<P>", -3vw, unset, unset, -3vw);
+      }
+
+      @media (min-width: 1024px) {
+        @include htmlTag("<P>", -1.5vw, unset, unset, -1.5vw);
+      }
+    }
+
+    &::after {
+      font-weight: 100;
+      @media (max-width: 1024px) {
+        @include htmlTag("</P>", unset, -3vw, -3vw, unset);
+      }
+
+      @media (min-width: 1024px) {
+        @include htmlTag("</P>", unset, -2vw, -1.5vw, unset);
+      }
+    }
+  }
+}
+
+.block {
+  position: relative;
+  background-color: $tile-background-color;
+  border-radius: 1.5rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 4rem 1.6rem 2rem;
+  overflow: hidden;
+
+  .project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    @media (min-width: 960px) {
+      padding: 6rem 2rem;
+      flex-direction: row;
+    }
+
+    .project-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      img {
+        width: 100%;
+        border-radius: 15px;
+        max-inline-size: 100%;
+        object-fit: cover;
+      }
+
+      @media (min-width: 960px) {
+        width: 50%;
+        margin-bottom: 0;
+        img {
+          width: 100%;
+          border-radius: 15px;
+          box-shadow: rgba(122, 192, 229, 0.42) 0px 30px 43px -25px,
+            rgba(122, 192, 229, 0.08) 0px 35px 75px -35px;
+          transform: perspective(800px) rotateY(25deg) scale(1) rotateX(10deg)
+            translateX(5%);
+          opacity: 1;
+          transition: 0.6s ease all;
+          &:hover {
+            box-shadow: 0px 19px 67px -38px rgba(122, 192, 229, 0.8);
+            transform: perspective(800px) rotateY(-15deg) rotateX(10deg)
+              scale(1.2);
+            filter: blur(0.2px);
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &.reverse {
+      @media (min-width: 960px) {
+        flex-direction: row-reverse;
+        .project-img img {
+          transform: perspective(800px) rotateY(-25deg) scale(1) rotateX(10deg)
+            translateX(-5%);
+          opacity: 1;
+          transition: 0.6s ease all;
+          &:hover {
+            box-shadow: 0px 19px 67px -38px rgba(122, 192, 229, 0.8);
+            transform: perspective(800px) rotateY(15deg) rotateX(10deg)
+              scale(1.2);
+            filter: blur(0.2px);
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .project-detail {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      gap: 2rem;
+      text-align: center;
+      padding-bottom: 4rem;
+
+      @media (min-width: 960px) {
+        width: 50%;
+        height: 100%;
+        margin-top: -28px;
+        padding-bottom: 0;
+      }
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        app-magnetic-link-button {
+          padding: 0px;
+        }
+      }
+    }
+
+    h3 {
+      font-size: 2rem;
+      @media (min-width: 768px) {
+        font-size: 2.6rem;
+      }
+    }
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .tiles {
+    position: relative;
+    display: flex;
+    width: 200%;
+
+    .tiles-moving-bar {
+      display: flex;
+      margin: 0.125rem 0;
+
+      span {
+        display: flex;
+        text-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0.125rem;
+        border-radius: 0.5rem;
+        padding: 20px 40px;
+        background-color: $tile-background-color;
+        font-size: 1.1rem;
+        font-family: "Manrope";
+      }
+    }
+
+    &.forward {
+      .tiles-moving-bar {
+        animation: moveTileForward 40s linear infinite;
+      }
+    }
+
+    &.backward {
+      // flex-direction: row-reverse;
+      .tiles-moving-bar {
+        animation: moveTileBackward 40s linear infinite;
+      }
+    }
+  }
+}
+.github-ref {
+  margin-top: 1rem;
+  display: flex;
+  app-magnetic-link-button {
+    padding: 50px;
+  }
+}
+
+@keyframes move-bar {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes moveTileForward {
+  from {
+    transform: translate(0);
+  }
+
+  to {
+    transform: translate(-100%);
+  }
+}
+
+@keyframes moveTileBackward {
+  from {
+    transform: translate(-100%);
+  }
+
+  to {
+    transform: translate(0);
+  }
+}

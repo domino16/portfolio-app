@@ -17,7 +17,8 @@ import { LayoutService } from './core/services/layout.service';
 import { BackgroundSmokeComponent } from './features/background-smoke/background-smoke.component';
 import { MagneticCursorDirective } from './shared/directives/cursor/magnetic-cursor.directive';
 import gsap from 'gsap';
-import { ProjectsComponent } from './features/projects/projects.component';
+import { ProjectsComponent } from './features/home/projects/projects.component';
+import { overlayAnimationTrigger } from './shared/animations/overlay-animations';
 export class CursorOptions {
   speed?: number;
   ease?: string;
@@ -38,15 +39,14 @@ export class CursorOptions {
     AsyncPipe,
     BackgroundSmokeComponent,
     MagneticCursorDirective,
-    ProjectsComponent
+    ProjectsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: overlayAnimationTrigger,
 })
-export class AppComponent{
+export class AppComponent {
   private readonly layoutService = inject(LayoutService);
   isMenuOpen$ = this.layoutService.isMenuOpen$;
-
- 
 }
