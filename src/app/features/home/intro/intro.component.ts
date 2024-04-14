@@ -111,7 +111,12 @@ export class introComponent implements AfterViewInit {
   animate(now: number) {
     if (now - this.lastRender >= this.frameRate) {
       this.lastRender = now;
-      if (window.scrollY < window.innerHeight - 10) {
+      if (
+        window.scrollY <
+        window.innerHeight + this.canvas.nativeElement.offsetTop - 62
+      ) {
+        const scrollCount =
+          window.scrollY - this.canvas.nativeElement.offsetTop + 52;
         this.context.clearRect(
           0,
           0,
@@ -120,7 +125,7 @@ export class introComponent implements AfterViewInit {
         );
         for (const particle of this.particles) {
           particle.draw();
-          particle.move(window.scrollY, this.mouse);
+          particle.move(scrollCount >= 0 ? scrollCount : 0, this.mouse);
         }
       }
     }

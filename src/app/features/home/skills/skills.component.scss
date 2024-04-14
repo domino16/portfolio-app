@@ -149,13 +149,10 @@
       padding: 20px;
       background-color: $tile-background-color;
 
-      img {
+      svg,
+      svg image {
         width: 10vw;
         height: 10vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        object-fit: contain;
 
         @media (min-width: 600px) {
           width: 50px;
@@ -167,6 +164,7 @@
           height: 3.5vw;
         }
       }
+
       @media (min-width: 600px) {
         width: 280px;
         height: 280px;

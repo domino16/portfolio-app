@@ -5,6 +5,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
 import { ContactSectionComponent } from './contact-section/contact-section.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,10 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
     ContactSectionComponent,
     AboutComponent,
     FooterComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
-}
+export class HomeComponent {}

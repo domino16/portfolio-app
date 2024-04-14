@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import './app/styles/colors';
 
 *,
 :after,
@@ -37,6 +37,6 @@ html {
 }
 
 body {
-  color: #e0eeee;
+  color: $pure-white;
   overflow-x: hidden;
 }

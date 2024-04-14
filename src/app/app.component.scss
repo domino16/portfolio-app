@@ -166,7 +166,7 @@
   }
 }
 
-.loader {
+.transition {
   position: fixed;
   top: 0;
   left: 0;
@@ -174,4 +174,5 @@
   height: 0;
   overflow: hidden;
   z-index: 10;
+  border-radius: 80% 80% 0 0/ 40% 40% 0 0;
 }

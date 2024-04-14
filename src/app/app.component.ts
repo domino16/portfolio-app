@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
@@ -19,6 +20,8 @@ import { MagneticCursorDirective } from './shared/directives/cursor/magnetic-cur
 import gsap from 'gsap';
 import { ProjectsComponent } from './features/home/projects/projects.component';
 import { overlayAnimationTrigger } from './shared/animations/overlay-animations';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { BehaviorSubject } from 'rxjs';
 export class CursorOptions {
   speed?: number;
   ease?: string;
@@ -40,13 +43,20 @@ export class CursorOptions {
     BackgroundSmokeComponent,
     MagneticCursorDirective,
     ProjectsComponent,
+    LoaderComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: overlayAnimationTrigger,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private readonly layoutService = inject(LayoutService);
   isMenuOpen$ = this.layoutService.isMenuOpen$;
+
+  isPreLoaded = new BehaviorSubject<boolean>(false);
+
+  ngOnInit(): void {
+    setTimeout(() => this.isPreLoaded.next(true), 1500);
+  }
 }

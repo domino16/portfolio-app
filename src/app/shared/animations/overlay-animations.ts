@@ -9,50 +9,68 @@ import {
 
 export const overlayAnimationTrigger = [
   trigger('slideFirstDiv', [
-    transition('* => *', [
+    state(
+      'in',
+      style({
+        top: '100%',
+        height: '100vh',
+      })
+    ),
+    transition('* <=> *', [
       style({
         position: 'fixed',
         top: '100%',
         width: '100vw',
-        height: '500px',
-        backgroundColor: '#121315',
+        height: '100vh',
+        backgroundColor: '#00dede',
+        borderRadius: '80% 80% 0 0 / 40% 40% 0 0',
       }),
       group([
         animate(
-          '2s cubic-bezier(.6, 0, .1, 1)',
+          '1.5s cubic-bezier(.6, 0, .1, 1)',
           style({
-            top: 0,
+            top: '-10%',
+            borderRadius: '0',
           })
         ),
         animate(
-          '1s 1.2s cubic-bezier(.6, 0, .1, 1)',
+          '.75s .75s cubic-bezier(.6, 0, .1, 1)',
           style({
-            height: 0,
+            height: '10vh',
           })
         ),
       ]),
     ]),
   ]),
   trigger('slideSecondDiv', [
+    state(
+      'in',
+      style({
+        top: '100%',
+        height: '100vh',
+      })
+    ),
     transition('* <=> *', [
       style({
         position: 'fixed',
         top: '100%',
         width: '100vw',
-        height: '500px',
-        backgroundColor: '#1a2023',
+        height: '100vh',
+        backgroundColor: '#121315',
+        borderRadius: '80% / 40%',
       }),
       group([
         animate(
-          '1.4s .6s cubic-bezier(.6, 0, .1, 1)',
+          '1.5s .3s cubic-bezier(.6, 0, .1, 1)',
           style({
-            top: '0',
+            top: '-10%',
+            borderRadius: '0 0 10% 10%',
           })
         ),
         animate(
-          '2s 1s cubic-bezier(.6, 0, .1, 1)',
+          '1.2s .75s cubic-bezier(.6, 0, .1, 1)',
           style({
-            height: 0,
+            height: '10vh',
           })
         ),
       ]),
@@ -61,23 +79,23 @@ export const overlayAnimationTrigger = [
   trigger('openDelay', [
     transition(':enter', [
       style({
-        inset: '100%',
+        bottom: '100%',
       }),
       animate(
-        '1s .5s cubic-bezier(.6, 0, .1, 1)',
+        '0.01s .94s cubic-bezier(.6, 0, .1, 1)',
         style({
-          inset: 0,
+          bottom: 0,
         })
       ),
     ]),
     transition(':leave', [
       style({
-        inset: '0',
+        bottom: '0',
       }),
       animate(
-        '1s 1s cubic-bezier(.6, 0, .1, 1)',
+        '0.01s 1.01s cubic-bezier(.6, 0, .1, 1)',
         style({
-          inset: '100%',
+          bottom: '100%',
         })
       ),
     ]),

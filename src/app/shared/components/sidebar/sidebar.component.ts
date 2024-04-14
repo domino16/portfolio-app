@@ -12,12 +12,16 @@ import { MagneticElementToCursorDirective } from '../../directives/cursor/magnet
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
-  private readonly layoutService  = inject(LayoutService)
+  private readonly layoutService = inject(LayoutService);
   isMenuActive$ = this.layoutService.isMenuOpen$;
-  
 
-  toggleMenu(){
-    this.layoutService.toggleMenu();
+  isClickedWithinTwoSeconds = false;
+
+  toggleMenu() {
+    if (!this.isClickedWithinTwoSeconds) {
+      this.layoutService.toggleMenu();
+      this.isClickedWithinTwoSeconds = true;
+      setTimeout(() => (this.isClickedWithinTwoSeconds = false), 2000);
+    }
   }
-
 }

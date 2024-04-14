@@ -1,5 +1,4 @@
 import {
-  AfterViewChecked,
   AfterViewInit,
   Component,
   OnInit,
@@ -16,7 +15,6 @@ import {
   MapMarker,
 } from '@angular/google-maps';
 import { NgFor } from '@angular/common';
-import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-contact-section',

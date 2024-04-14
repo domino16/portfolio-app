@@ -102,10 +102,9 @@ export class BackgroundSmokeComponent {
     // window.addEventListener('mouseup', () => this.onPointerUp());
     // window.addEventListener('touchend', () => this.onPointerUp());
 
-    document.querySelectorAll('[data-cursor]').forEach((el) => {;
+    document.querySelectorAll('[data-cursor]').forEach((el) => {
       el.addEventListener('mouseenter', () => {
         this.isMouseOverButton = true;
-        console.log(true);
       });
       el.addEventListener('mouseleave', () => {
         this.isMouseOverButton = false;
@@ -798,7 +797,7 @@ export class BackgroundSmokeComponent {
     this.pointer.down = true;
     this.pointer.deltax = 0;
     this.pointer.deltay = 0;
-    this.pointer.color = [0.4, 0.6, 0.6]; //smoke color
+    this.pointer.color = [0.57, 0.988, 0.988]; //smoke color
   }
 }
 
