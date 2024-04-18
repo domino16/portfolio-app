@@ -1,4 +1,11 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-background-smoke',
@@ -7,7 +14,9 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
   templateUrl: './background-smoke.component.html',
   styleUrl: './background-smoke.component.scss',
 })
-export class BackgroundSmokeComponent {
+export class BackgroundSmokeComponent
+  implements AfterViewInit, AfterViewChecked
+{
   @ViewChild('canvas')
   canvas!: ElementRef<HTMLCanvasElement>;
   params = {
@@ -67,41 +76,23 @@ export class BackgroundSmokeComponent {
 
   @HostListener('window:mousemove', ['$event'])
   onWindowMouseMove(e: MouseEvent) {
-    if (!this.isMouseOverButton) {
-      this.pointer.moved = this.pointer.down;
-      this.pointer.deltax = this.clampDelta(e.x - this.pointer.x);
-      this.pointer.deltay = this.clampDelta(e.y - this.pointer.y);
-      this.pointer.x = e.x;
-      this.pointer.y = e.y;
-    }
+    this.setMousePointer(e.clientX, e.clientY);
   }
 
-  ngAfterViewInit(): void {
+  @HostListener('window:touchmove', ['$event'])
+  onWindowTouchMove(e: TouchEvent) {
+    const event = e.touches[0];
+    this.setMousePointer(Math.round(event.clientX), Math.round(event.clientY));
+  }
+
+
+  ngAfterViewInit() {
     this.initdata();
-    // this.resizeCanvas();
-    // this.blit();
-    // this.splat();
     this.update();
     this.onPointerDown();
-    // this.canvas.nativeElement.addEventListener('mousedown', () =>
-    //   this.onPointerDown()
-    // );
+  }
 
-    // this.canvas.nativeElement.addEventListener('touchstart', () =>
-    //   this.onPointerDown()
-    // );
-    // this.canvas.nativeElement.addEventListener('touchmove', (e) => {
-    //   e.preventDefault();
-    //   const touch = e.touches[0];
-    //   this.pointer.moved = this.pointer.down;
-    //   this.pointer.deltax = this.clampDelta(touch.pageX - this.pointer.x);
-    //   this.pointer.deltay = this.clampDelta(touch.pageY - this.pointer.y);
-    //   this.pointer.x = touch.pageX;
-    //   this.pointer.y = touch.pageY;
-    // });
-    // window.addEventListener('mouseup', () => this.onPointerUp());
-    // window.addEventListener('touchend', () => this.onPointerUp());
-
+  ngAfterViewChecked(): void {
     document.querySelectorAll('[data-cursor]').forEach((el) => {
       el.addEventListener('mouseenter', () => {
         this.isMouseOverButton = true;
@@ -110,6 +101,16 @@ export class BackgroundSmokeComponent {
         this.isMouseOverButton = false;
       });
     });
+  }
+
+  setMousePointer(x: number, y: number) {
+    if (!this.isMouseOverButton) {
+      this.pointer.moved = this.pointer.down;
+      this.pointer.deltax = this.clampDelta(x - this.pointer.x);
+      this.pointer.deltay = this.clampDelta(y - this.pointer.y);
+      this.pointer.x = x;
+      this.pointer.y = y;
+    }
   }
 
   initdata() {

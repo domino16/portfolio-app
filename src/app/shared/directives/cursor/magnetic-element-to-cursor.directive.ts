@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, Input } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, EventEmitter, Input } from '@angular/core';
 import { gsap } from 'gsap';
 import { MagneticOptions } from '../../../core/interfaces/magneticOptions';
 
@@ -6,7 +6,7 @@ import { MagneticOptions } from '../../../core/interfaces/magneticOptions';
   selector: '[appMagneticElementToCursor]',
   standalone: true,
 })
-export class MagneticElementToCursorDirective {
+export class MagneticElementToCursorDirective implements AfterViewInit {
   #x!: number;
   #y!: number;
   #width!: number;

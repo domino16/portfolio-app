@@ -11,7 +11,6 @@ import { HeadingScrollDirective } from '../../../shared/directives/animations/he
 import {
   GoogleMap,
   GoogleMapsModule,
-  MapAdvancedMarker,
   MapMarker,
 } from '@angular/google-maps';
 import { NgFor } from '@angular/common';

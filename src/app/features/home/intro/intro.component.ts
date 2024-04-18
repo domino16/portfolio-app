@@ -53,7 +53,7 @@ export class introComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.checkIfIsMobile();
-    this.image.src = '../../../../assets/man.png';
+    this.image.src = '../../../../assets/man1.png';
     this.canvas.nativeElement.width = 900;
     this.canvas.nativeElement.height = 600;
     this.context = this.canvas?.nativeElement.getContext('2d', {

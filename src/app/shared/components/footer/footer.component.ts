@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MagneticElementToCursorDirective } from '../../directives/cursor/magnetic-element-to-cursor.directive';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [],
+  imports: [MagneticElementToCursorDirective],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrl: './footer.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent {
-
-}
+export class FooterComponent {}
