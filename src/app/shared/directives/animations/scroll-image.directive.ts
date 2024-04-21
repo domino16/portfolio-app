@@ -16,7 +16,6 @@ export class ScrollImageDirective implements AfterViewInit {
 
       scrollTrigger:{
         markers:true,
-        start:
       }
     } )
   }
