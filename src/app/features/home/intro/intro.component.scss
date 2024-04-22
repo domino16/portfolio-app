@@ -32,11 +32,18 @@
     font-family: "Catamaran";
 
     &::before {
-      @include htmlTag("<BODY>", -80px, unset, unset, -30px);
+      @include htmlTag("<BODY>", -80px, unset, unset, -15px);
+
+      @media (min-width: 768px) {
+        @include htmlTag("<BODY>", -80px, unset, unset, -30px);
+      }
     }
 
     &::after {
-      @include htmlTag("<HTML>", -100px, unset, unset, -40px);
+      @include htmlTag("<HTML>", -100px, unset, unset, -20px);
+      @media (min-width: 768px) {
+        @include htmlTag("<HTML>", -100px, unset, unset, -40px);
+      }
     }
 
     h1 {
@@ -67,15 +74,21 @@
       }
 
       &::before {
-        @include htmlTag("<H1>", -60px, unset, unset, -20px);
+        @include htmlTag("<H1>", -50px, unset, unset, -10px);
+
+        @media (min-width: 600px) {
+          @include htmlTag("<H1>", -60px, unset, unset, -20px);
+        }
       }
 
       &::after {
-        @include htmlTag("</H1>", unset, -40px, -60px, unset);
+        @include htmlTag("</H1>", unset, -20px, -50px, unset);
+        @media (min-width: 600px) {
+          @include htmlTag("</H1>", unset, -36px, -60px, unset);
+        }
       }
 
       .text-accent {
-        // color: $accent-text-color;
         text-shadow: $placeholder-color -1vw 1vw;
 
         @media (min-width: 768px) {
@@ -108,6 +121,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: canvas-animation 1s 2.2s;
+  align-self: center;
+  margin-top: -70px;
 
   @media (min-width: 768px) {
     width: 50%;
@@ -118,7 +134,6 @@
     width: 900px;
     height: 600px;
     transform: scale(0.7);
-    animation: opacity-animation 1s 2s;
 
     @media (min-width: 768px) {
     }
@@ -151,12 +166,17 @@
   }
 }
 
-@keyframes opacity-animation {
-  0%, 50%{
+@keyframes canvas-animation {
+  0% {
+    filter: blur(10px);
+    transform: translate(0, 100%) rotateX(130deg) skew(-10deg, -30deg);
     opacity: 0;
+    height: 0;
   }
 
-  100%{
+  100% {
+    transform: translate(0) rotateX(0) skew(0);
     opacity: 1;
+    height: 100%;
   }
 }

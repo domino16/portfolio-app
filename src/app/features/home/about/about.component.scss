@@ -7,15 +7,16 @@
   width: 100%;
   height: 100%;
   font-family: "Manrope", sans-serif;
+  margin-top: 4vw;
 }
 
 h2 {
   position: relative;
   align-self: start;
   width: fit-content;
-  margin: 10vw 4vw;
+  margin: 0vw 4vw 10vw;
   font-size: 15vw;
-  line-height: 11vw;
+  line-height: 12vw;
   font-weight: 900;
   text-wrap: nowrap;
   background: linear-gradient(
@@ -41,7 +42,7 @@ h2 {
   @media (min-width: 768px) {
     font-size: 11.5vw;
     line-height: 9.5vw;
-    margin: 6vw 4vw;
+    margin: 2vw 4vw 6vw;
     &::before {
       font-weight: 100;
       @include htmlTag("<H2>", -6vw, unset, unset, -2vw);
@@ -54,34 +55,61 @@ h2 {
   }
 }
 
-p {
-  position: relative;
-  margin: 10px 20px;
-  font-size: 1.1rem;
-  text-align: justify;
-  font-family: "Syne";
+.about-wrapper {
+  display: flex;
+  justify-content: space-around;
 
-  @media (min-width: 768px) {
-    margin: 10px 10%;
-    font-size: 1.2rem;
-  }
+  img {
+    width: 30%;
+    object-fit: contain;
+    display: none;
 
-  @media (min-width: 1024px) {
-    margin: 10px 25%;
-    font-size: 1.3rem;
-  }
-
-  &:first-of-type {
-    &::before {
-      font-weight: 100;
-      @include htmlTag("<P>", -3vw, unset, unset, -2vw);
+    @media (min-width: 1024px) {
+      display: flex;
     }
   }
+  .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-  &:last-of-type {
-    &::after {
-      font-weight: 100;
-      @include htmlTag("</P>", unset, -2vw, -3vw, unset);
+    @media (min-width: 1024px) {
+      width: 60%;
+      font-size: 1.3rem;
+    }
+
+    p {
+      position: relative;
+      padding: 0 5%;
+      margin: 10px 0;
+      font-size: 1.1rem;
+      text-align: justify;
+      font-family: "Syne";
+
+      @media (min-width: 768px) {
+        margin: 10px 0;
+        font-size: 1.2rem;
+      }
+
+      @media (min-width: 1024px) {
+        margin: 10px 0;
+        font-size: 1.3rem;
+      }
+
+      &:first-of-type {
+        &::before {
+          font-weight: 100;
+          @include htmlTag("<P>", -3vw, unset, unset, -2vw);
+        }
+      }
+
+      &:last-of-type {
+        &::after {
+          font-weight: 100;
+          @include htmlTag("</P>", unset, -2vw, -3vw, unset);
+        }
+      }
     }
   }
 }

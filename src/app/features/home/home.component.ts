@@ -4,7 +4,6 @@ import { SkillsComponent } from './skills/skills.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
 import { ContactSectionComponent } from './contact-section/contact-section.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -16,7 +15,6 @@ import { NgOptimizedImage } from '@angular/common';
     ProjectsComponent,
     ContactSectionComponent,
     AboutComponent,
-    FooterComponent,
     NgOptimizedImage,
   ],
   templateUrl: './home.component.html',

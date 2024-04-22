@@ -1,12 +1,7 @@
 import {
-  AfterViewChecked,
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  Input,
   OnInit,
-  ViewChild,
   inject,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -17,20 +12,13 @@ import { AsyncPipe } from '@angular/common';
 import { LayoutService } from './core/services/layout.service';
 import { BackgroundSmokeComponent } from './features/background-smoke/background-smoke.component';
 import { MagneticCursorDirective } from './shared/directives/cursor/magnetic-cursor.directive';
-import gsap from 'gsap';
 import { ProjectsComponent } from './features/home/projects/projects.component';
 import { overlayAnimationTrigger } from './shared/animations/overlay-animations';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { BehaviorSubject } from 'rxjs';
-export class CursorOptions {
-  speed?: number;
-  ease?: string;
-  visibleTimeout?: number;
-  scroller?: {
-    selector: string;
-    scrollType: 'normal' | 'transform';
-  };
-}
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { AnimationEvent } from '@angular/animations';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -44,6 +32,7 @@ export class CursorOptions {
     MagneticCursorDirective,
     ProjectsComponent,
     LoaderComponent,
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -53,7 +42,6 @@ export class CursorOptions {
 export class AppComponent implements OnInit {
   private readonly layoutService = inject(LayoutService);
   isMenuOpen$ = this.layoutService.isMenuOpen$;
-
   isPreLoaded = new BehaviorSubject<boolean>(false);
 
   ngOnInit(): void {

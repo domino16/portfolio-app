@@ -6,9 +6,18 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { CursorOptions } from '../../../app.component';
 import { gsap } from 'gsap';
 import { Router } from '@angular/router';
+
+class CursorOptions {
+  speed?: number;
+  ease?: string;
+  visibleTimeout?: number;
+  scroller?: {
+    selector: string;
+    scrollType: 'normal' | 'transform';
+  };
+}
 
 @Directive({
   selector: '[appMagneticCursor]',
@@ -19,6 +28,7 @@ export class MagneticCursorDirective implements OnInit {
   cursorTextEl!: HTMLDivElement;
   hostEl!: HTMLElement;
   visible!: boolean;
+  cursorStoppedTimer!: ReturnType<typeof setTimeout>;
 
   #pos!: {
     x: number;
@@ -221,6 +231,20 @@ export class MagneticCursorDirective implements OnInit {
       ease: this.options.ease,
       duration: this.visible ? duration || this.options.speed : 0,
     });
+
+    //change behavior on mobile devices
+    if (this.isTouchDevice() && this.cursorEl.classList.contains('-hidden')) {
+      this.cursorEl.classList.remove('-hidden');
+    }
+
+    if (this.isTouchDevice()) {
+      clearTimeout(this.cursorStoppedTimer);
+      this.cursorStoppedTimer = setTimeout(() => {
+        this.cursorEl.classList.add('-hidden');
+        this.cursorTextEl.classList.add('-hidden');
+        // this.cursorTextEl.style.display = 'none';
+      }, 1000);
+    }
   }
 
   // show cursor
@@ -239,5 +263,9 @@ export class MagneticCursorDirective implements OnInit {
       () => (this.visible = false),
       this.options.visibleTimeout
     );
+  }
+
+  isTouchDevice(): boolean {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   }
 }

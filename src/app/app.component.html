@@ -1,9 +1,7 @@
 @if((isMenuOpen$ | async)){
 <div class="transition" @slideFirstDiv></div>
 <div class="transition" @slideSecondDiv></div>
-}
-
-@if((isPreLoaded | async) === false){
+} @if((isPreLoaded | async) === false){
 <app-loader @openDelay></app-loader>
 }@else {
 <div class="transition" @slideFirstDiv></div>
@@ -17,6 +15,7 @@
 <app-background-smoke></app-background-smoke>
 <div class="wrapper">
   <router-outlet />
+  <app-footer></app-footer>
 </div>
 <div appMagneticCursor class="cb-cursor" #cursor>
   <div class="cb-cursor-text" #cursorText></div>

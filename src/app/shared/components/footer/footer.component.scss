@@ -12,7 +12,7 @@ h3 {
   font-size: 8vw;
   text-wrap: nowrap;
   text-align: center;
-  margin: 50px 0;
+  margin: 0 0 50px;
   font-weight: bolder;
   letter-spacing: -2px;
   color: $dark-accent-color;
@@ -20,6 +20,7 @@ h3 {
   @media (min-width: 768px) {
     font-size: 7.6vw;
     letter-spacing: -4px;
+    margin: 50px 0;
   }
 
   &::before {
@@ -53,9 +54,14 @@ h3 {
     margin-left: 2%;
     font-size: 1.2rem;
     text-wrap: nowrap;
+
+    @media (min-width: 640px) {
+      margin-left: 4%;
+    }
   }
 
   .social-media-links {
+    display: flex;
     margin-right: 2%;
 
     a {

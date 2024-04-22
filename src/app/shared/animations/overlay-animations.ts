@@ -1,6 +1,7 @@
 import {
   animate,
   group,
+  query,
   state,
   style,
   transition,
@@ -9,14 +10,7 @@ import {
 
 export const overlayAnimationTrigger = [
   trigger('slideFirstDiv', [
-    state(
-      'in',
-      style({
-        top: '100%',
-        height: '100vh',
-      })
-    ),
-    transition('* <=> *', [
+    transition('* => *', [
       style({
         position: 'fixed',
         top: '100%',
@@ -28,6 +22,7 @@ export const overlayAnimationTrigger = [
       group([
         animate(
           '1.5s cubic-bezier(.6, 0, .1, 1)',
+          
           style({
             top: '-10%',
             borderRadius: '0',
@@ -43,14 +38,7 @@ export const overlayAnimationTrigger = [
     ]),
   ]),
   trigger('slideSecondDiv', [
-    state(
-      'in',
-      style({
-        top: '100%',
-        height: '100vh',
-      })
-    ),
-    transition('* <=> *', [
+    transition('* => *', [
       style({
         position: 'fixed',
         top: '100%',
