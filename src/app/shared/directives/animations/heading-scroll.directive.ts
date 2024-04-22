@@ -17,7 +17,7 @@ export class HeadingScrollDirective implements AfterViewInit {
       scrollTrigger: {
         trigger: this.el.nativeElement,
         markers: false,
-        scrub: 1,
+        scrub: 2,
         start: 'top-=80px bottom',
         end: 'bottom center',
       },
@@ -29,7 +29,7 @@ export class HeadingScrollDirective implements AfterViewInit {
       scrollTrigger: {
         trigger: this.el.nativeElement,
         markers: false,
-        scrub: 1,
+        scrub: 2,
         start: 'center bottom',
         end: 'bottom+=200 center',
       },
