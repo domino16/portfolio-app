@@ -7,17 +7,22 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
   standalone: true,
 })
 export class ScrollImageDirective implements AfterViewInit {
-  constructor(private el:ElementRef) {
+  constructor(private el: ElementRef) {
     gsap.registerPlugin(ScrollTrigger);
   }
 
   ngAfterViewInit(): void {
-    const animation = gsap.to(this.el.nativeElement, {
-
-      scrollTrigger:{
-        markers:true,
-      }
-    } )
+    const animation = gsap.from(this.el.nativeElement, {
+      filter: 'blur(5px)',
+      opacity: 0,
+      y: '-30%',
+      scrollTrigger: {
+        trigger: this.el.nativeElement,
+        markers: false,
+        scrub: 1,
+        start: 'top bottom',
+        end: 'top top',
+      },
+    });
   }
-
 }
