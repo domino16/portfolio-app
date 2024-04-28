@@ -12,23 +12,22 @@ export class TextAnimationDirective {
   }
 
   ngAfterViewInit(): void {
-    const animation = gsap.to(this.el.nativeElement, {
+    const animation = gsap.to(this.el.nativeElement.children, {
       opacity: 1,
       y: '0',
       duration: 0.7,
-      delay: 2.5,
+      stagger: 0.2,
+      paused: true,
     });
-
-    // animation.pause().progress(0);
 
     ScrollTrigger.create({
       trigger: this.el.nativeElement,
-      markers: true,
-      end: 'top bottom',
-      start: 'top bottom',
+      markers: false,
+      end: 'bottom-=30% top',
+      start: 'top-=30% bottom',
 
       onEnter: () => animation.play(),
-      onEnterBack: () => {
+      onLeaveBack: () => {
         animation.progress(0);
         animation.pause();
       },

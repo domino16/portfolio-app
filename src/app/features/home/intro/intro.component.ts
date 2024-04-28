@@ -8,11 +8,12 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
+import { SubheadingAnimationsDirective } from '../../../shared/directives/animations/subheading-animations.directive';
 
 @Component({
   selector: 'app-intro',
   standalone: true,
-  imports: [],
+  imports: [SubheadingAnimationsDirective],
   templateUrl: './intro.component.html',
   styleUrl: './intro.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

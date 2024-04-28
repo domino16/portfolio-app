@@ -83,6 +83,7 @@
 
       &::after {
         @include htmlTag("</H1>", unset, -20px, -50px, unset);
+
         @media (min-width: 600px) {
           @include htmlTag("</H1>", unset, -36px, -60px, unset);
         }
@@ -100,18 +101,29 @@
       }
     }
 
-    p {
+    .subheader-container {
+      align-self: flex-start;
+      display: flex;
+      align-items: flex-end;
       position: relative;
+      height: 1.95rem;
       font-size: 1.2rem;
       font-weight: 600;
-      padding-top: 4rem;
+      margin-top: 4rem;
+      font-family: "Catamaran";
 
-      &::before {
-        @include htmlTag("<P>", 3rem, unset, unset, -1rem);
-      }
+      .subheader {
+        overflow: hidden;
+        opacity: 0;
+        height: 0;
 
-      &::after {
-        @include htmlTag("</P>", unset, unset, -1rem, unset);
+        &::before {
+          @include htmlTag("<P>", -1.2rem, unset, unset, -1.2rem);
+        }
+
+        &::after {
+          @include htmlTag("</P>", unset, -1.5rem, -1.5rem, unset);
+        }
       }
     }
   }

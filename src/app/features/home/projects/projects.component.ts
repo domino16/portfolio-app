@@ -3,6 +3,7 @@ import { MagneticElementToCursorDirective } from '../../../shared/directives/cur
 import { MagneticLinkButtonComponent } from '../../../shared/components/magnetic-link-button/magnetic-link-button.component';
 import { MagneticOptions } from '../../../core/interfaces/magneticOptions';
 import { HeadingScrollDirective } from '../../../shared/directives/animations/heading-scroll.directive';
+import { SubheadingAnimationsDirective } from '../../../shared/directives/animations/subheading-animations.directive';
 
 @Component({
   selector: 'app-projects',
@@ -11,6 +12,7 @@ import { HeadingScrollDirective } from '../../../shared/directives/animations/he
     MagneticElementToCursorDirective,
     MagneticLinkButtonComponent,
     HeadingScrollDirective,
+    SubheadingAnimationsDirective
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',

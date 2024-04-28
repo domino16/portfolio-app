@@ -14,6 +14,7 @@ import {
   MapMarker,
 } from '@angular/google-maps';
 import { NgFor } from '@angular/common';
+import { SubheadingAnimationsDirective } from '../../../shared/directives/animations/subheading-animations.directive';
 
 @Component({
   selector: 'app-contact-section',
@@ -25,6 +26,7 @@ import { NgFor } from '@angular/common';
     GoogleMapsModule,
     MapMarker,
     NgFor,
+    SubheadingAnimationsDirective
   ],
   templateUrl: './contact-section.component.html',
   styleUrl: './contact-section.component.scss',

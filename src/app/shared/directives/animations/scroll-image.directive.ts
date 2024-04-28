@@ -12,10 +12,8 @@ export class ScrollImageDirective implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const animation = gsap.from(this.el.nativeElement, {
-      filter: 'blur(5px)',
-      opacity: 0,
-      y: '-30%',
+    const animation = gsap.to(this.el.nativeElement, {
+      y: '0',
       scrollTrigger: {
         trigger: this.el.nativeElement,
         markers: false,
