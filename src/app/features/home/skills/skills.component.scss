@@ -60,45 +60,38 @@
     }
   }
 
-  .subtitle-container {
+  .subtitle {
     display: inline-block;
     position: relative;
     margin: 0 0 10vw 4vw;
     font-family: "Manrope";
     font-size: 0.9rem;
     letter-spacing: 2px calc(max);
-    height: 1.2rem;
 
     @media (min-width: 768px) {
       margin: 0 0 6vw 8vw;
       font-size: 1.1rem;
-      height: 1.5rem;
     }
 
-    .subtitle {
-      overflow: hidden;
-      opacity: 0;
-      height: 0;
-      &::before {
-        font-weight: 100;
-        @media (max-width: 1024px) {
-          @include htmlTag("<P>", -3vw, unset, unset, -3vw);
-        }
-
-        @media (min-width: 1024px) {
-          @include htmlTag("<P>", -1.5vw, unset, unset, -1.5vw);
-        }
+    &::before {
+      font-weight: 100;
+      @media (max-width: 1024px) {
+        @include htmlTag("<P>", -3vw, unset, unset, -3vw);
       }
 
-      &::after {
-        font-weight: 100;
-        @media (max-width: 1024px) {
-          @include htmlTag("</P>", unset, -3vw, -3vw, unset);
-        }
+      @media (min-width: 1024px) {
+        @include htmlTag("<P>", -1.5vw, unset, unset, -1.5vw);
+      }
+    }
 
-        @media (min-width: 1024px) {
-          @include htmlTag("</P>", unset, -2vw, -1.5vw, unset);
-        }
+    &::after {
+      font-weight: 100;
+      @media (max-width: 1024px) {
+        @include htmlTag("</P>", unset, -3vw, -3vw, unset);
+      }
+
+      @media (min-width: 1024px) {
+        @include htmlTag("</P>", unset, -2vw, -1.5vw, unset);
       }
     }
   }

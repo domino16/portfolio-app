@@ -4,7 +4,6 @@ import { SkillsComponent } from './skills/skills.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
 import { ContactSectionComponent } from './contact-section/contact-section.component';
-import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +14,6 @@ import { NgOptimizedImage } from '@angular/common';
     ProjectsComponent,
     ContactSectionComponent,
     AboutComponent,
-    NgOptimizedImage,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

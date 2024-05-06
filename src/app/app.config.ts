@@ -4,8 +4,12 @@ import {
   InMemoryScrollingOptions,
   provideRouter,
   withInMemoryScrolling,
+  
 } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import {
+  provideClientHydration,
+} from '@angular/platform-browser';
 
 import { routes } from './app.routes';
 
@@ -18,5 +22,5 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
   withInMemoryScrolling(scrollConfig);
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes, inMemoryScrollingFeature), provideAnimations()],
+  providers: [provideClientHydration(), provideRouter(routes, inMemoryScrollingFeature), provideAnimations(), ],
 };

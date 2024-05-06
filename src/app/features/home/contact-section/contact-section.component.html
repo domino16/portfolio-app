@@ -1,23 +1,48 @@
 <h2 appHeadingScroll>CONTACT</h2>
-<div class="subtitle-container">
-  <div class="subtitle" appSubheadingAnimations>
-    <p>Let's create something extraordinary together.</p>
-  </div>
-</div>
-<!-- <p>Let's create something extraordinary together.</p> -->
+<p>Let's create something extraordinary together.</p>
 
 <div class="wrapper">
-  <form>
-    <input type="text" placeholder="Name" data-cursor-text="Enter Name" />
-    <input type="email" placeholder="Email" data-cursor-text="Enter Email" />
-    <input type="text" placeholder="Subject" data-cursor-text="Enter Subject" />
-    <textarea placeholder="Message" data-cursor-text="Enter Message"></textarea>
-    <a href="">
+  <form [formGroup]="contactForm" (ngSubmit)="sendEmail()">
+    <label for="name">
+      <input
+        type="text"
+        placeholder="Name"
+        data-cursor-text="Enter Name"
+        formControlName="name" />
+      <span class="invalid-line"></span
+    ></label>
+    <label for="email">
+      <input
+        type="email"
+        placeholder="Email"
+        data-cursor-text="Enter Email"
+        formControlName="email" />
+      <span class="invalid-line"></span
+    ></label>
+    <label for="subject">
+      <input
+        type="text"
+        placeholder="Subject"
+        data-cursor-text="Enter Subject"
+        formControlName="subject" />
+      <span class="invalid-line"></span
+    ></label>
+    <label for="Message">
+      <textarea
+        placeholder="Message"
+        data-cursor-text="Enter Message"
+        formControlName="message"
+      ></textarea>
+      <span class="invalid-line"></span>  
+      <div class="sent-confirmation"><span>Email sent</span></div>
+    </label>
+  
+    <button type="submit" aria-label="Send message to Dominik">
       <app-magnetic-link-button
         btnText="Send"
         data-cursor="-opaque"
-      ></app-magnetic-link-button
-    ></a>
+      ></app-magnetic-link-button>
+    </button>
   </form>
   <div class="map">
     <google-map

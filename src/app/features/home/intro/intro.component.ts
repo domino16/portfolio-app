@@ -8,12 +8,11 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
-import { SubheadingAnimationsDirective } from '../../../shared/directives/animations/subheading-animations.directive';
 
 @Component({
   selector: 'app-intro',
   standalone: true,
-  imports: [SubheadingAnimationsDirective],
+  imports: [],
   templateUrl: './intro.component.html',
   styleUrl: './intro.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,33 +27,32 @@ export class introComponent implements AfterViewInit {
   particles: Particle[] = [];
   mouse: { x: number; y: number } = { x: 0, y: 0 };
   lastRender = 0;
-  isMobile: boolean = false;
 
   frameRate = 1000 / 50; // 50 frames per  secound
   moveTimeout!: ReturnType<typeof setTimeout>;
 
   @HostListener('window:resize')
   onWindowResize() {
-    this.checkIfIsMobile();
-    this.context = this.canvas?.nativeElement.getContext('2d', {
-      willReadFrequently: true,
-    })!;
-    this.canvas.nativeElement.width = 900;
-    this.canvas.nativeElement.height = 600;
-    this.particles = [];
-    this.context.drawImage(
-      this.image,
-      0,
-      0,
-      this.canvas.nativeElement.width,
-      this.canvas.nativeElement.height
-    );
-    this.init();
+    if (window.innerWidth > 768) {
+      this.context = this.canvas?.nativeElement.getContext('2d', {
+        willReadFrequently: true,
+      })!;
+      this.canvas.nativeElement.width = 900;
+      this.canvas.nativeElement.height = 600;
+      this.particles = [];
+      this.context.drawImage(
+        this.image,
+        0,
+        0,
+        this.canvas.nativeElement.width,
+        this.canvas.nativeElement.height
+      );
+      this.init();
+    }
   }
 
   ngAfterViewInit(): void {
-    this.checkIfIsMobile();
-    this.image.src = '../../../../assets/man1.png';
+    this.image.src = '../../../../assets/man1.webp';
     this.canvas.nativeElement.width = 900;
     this.canvas.nativeElement.height = 600;
     this.context = this.canvas?.nativeElement.getContext('2d', {
@@ -140,10 +138,6 @@ export class introComponent implements AfterViewInit {
     this.moveTimeout = setTimeout(() => {
       this.mouse = { x: 0, y: 0 };
     }, 50);
-  }
-
-  checkIfIsMobile() {
-    window.innerWidth <= 768 ? (this.isMobile = true) : (this.isMobile = false);
   }
 }
 

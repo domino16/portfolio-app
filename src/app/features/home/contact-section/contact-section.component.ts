@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   OnInit,
   Renderer2,
   ViewChild,
@@ -8,13 +9,15 @@ import {
 } from '@angular/core';
 import { MagneticLinkButtonComponent } from '../../../shared/components/magnetic-link-button/magnetic-link-button.component';
 import { HeadingScrollDirective } from '../../../shared/directives/animations/heading-scroll.directive';
-import {
-  GoogleMap,
-  GoogleMapsModule,
-  MapMarker,
-} from '@angular/google-maps';
+import { GoogleMap, GoogleMapsModule, MapMarker } from '@angular/google-maps';
 import { NgFor } from '@angular/common';
-import { SubheadingAnimationsDirective } from '../../../shared/directives/animations/subheading-animations.directive';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 
 @Component({
   selector: 'app-contact-section',
@@ -26,13 +29,14 @@ import { SubheadingAnimationsDirective } from '../../../shared/directives/animat
     GoogleMapsModule,
     MapMarker,
     NgFor,
-    SubheadingAnimationsDirective
+    ReactiveFormsModule,
   ],
   templateUrl: './contact-section.component.html',
   styleUrl: './contact-section.component.scss',
 })
 export class ContactSectionComponent implements OnInit, AfterViewInit {
   private readonly renderer = inject(Renderer2);
+  private readonly el = inject(ElementRef);
   @ViewChild(GoogleMap) map!: GoogleMap;
 
   markers: {
@@ -55,6 +59,23 @@ export class ContactSectionComponent implements OnInit, AfterViewInit {
     heading: 10,
   };
 
+  contactForm: FormGroup = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+    ]),
+    subject: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    message: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+  });
+
   ngOnInit(): void {
     this.markers.push({
       position: this.lodzCords,
@@ -63,7 +84,11 @@ export class ContactSectionComponent implements OnInit, AfterViewInit {
     });
   }
 
-  async ngAfterViewInit(): Promise<void> {
+  ngAfterViewInit() {
+    this.initmap();
+  }
+
+  async initmap(): Promise<void> {
     const { AdvancedMarkerElement } = (await google.maps.importLibrary(
       'marker'
     )) as google.maps.MarkerLibrary;
@@ -93,5 +118,38 @@ export class ContactSectionComponent implements OnInit, AfterViewInit {
         clearInterval(interval);
       }
     }, 200);
+  }
+
+  sendEmail() {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+
+    const params = {
+      name: this.contactForm.get('name')?.value,
+      subject: this.contactForm.get('subject')?.value,
+      email: this.contactForm.get('email')?.value,
+      message: this.contactForm.get('message')?.value,
+    };
+    console.log(params);
+
+    emailjs
+      .send('service_zixhzto', 'template_5oua6xc', params, {
+        publicKey: 'sVF2pdmOJCedoj0b_',
+      })
+      .then(
+        () => {
+          this.renderer.addClass(
+            this.el.nativeElement.querySelector('.sent-confirmation'),
+            'show'
+          );
+
+          this.contactForm.reset();
+        },
+        (error) => {
+          alert('FAILED...' + (error as EmailJSResponseStatus).text);
+        }
+      );
   }
 }

@@ -1,4 +1,4 @@
-@if((isMenuOpen$ | async)){
+<!-- @if((isMenuOpen$ | async)){
 <div class="transition" @slideFirstDiv></div>
 <div class="transition" @slideSecondDiv></div>
 } @if((isPreLoaded | async) === false){
@@ -6,7 +6,7 @@
 }@else {
 <div class="transition" @slideFirstDiv></div>
 <div class="transition" @slideSecondDiv></div>
-}
+} -->
 
 <app-sidebar></app-sidebar> @if (isMenuOpen$ | async){<app-menu
   @openDelay
