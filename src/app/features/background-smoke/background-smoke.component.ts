@@ -79,12 +79,6 @@ export class BackgroundSmokeComponent
     this.setMousePointer(e.clientX, e.clientY);
   }
 
-  @HostListener('window:touchmove', ['$event'])
-  onWindowTouchMove(e: TouchEvent) {
-    const event = e.touches[0];
-    this.setMousePointer(Math.round(event.clientX), Math.round(event.clientY));
-  }
-
 
   ngAfterViewInit() {
     this.initdata();

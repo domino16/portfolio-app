@@ -1,8 +1,6 @@
 import {
   animate,
   group,
-  query,
-  state,
   style,
   transition,
   trigger,
@@ -13,9 +11,10 @@ export const overlayAnimationTrigger = [
     transition('* => *', [
       style({
         position: 'fixed',
-        top: '100%',
+        top: '-10%',
         width: '100vw',
         height: '100vh',
+        transform: 'translateY(110%)',
         backgroundColor: '#00dede',
         borderRadius: '80% 80% 0 0 / 40% 40% 0 0',
       }),
@@ -24,7 +23,8 @@ export const overlayAnimationTrigger = [
           '1.5s cubic-bezier(.6, 0, .1, 1)',
           
           style({
-            top: '-10%',
+            transform: 'translateY(0)',
+            
             borderRadius: '0',
           })
         ),
@@ -41,9 +41,10 @@ export const overlayAnimationTrigger = [
     transition('* => *', [
       style({
         position: 'fixed',
-        top: '100%',
+        top: '-10%',
         width: '100vw',
         height: '100vh',
+        transform: 'translateY(110%)',
         backgroundColor: '#121315',
         borderRadius: '80% / 40%',
       }),
@@ -51,7 +52,7 @@ export const overlayAnimationTrigger = [
         animate(
           '1.5s .3s cubic-bezier(.6, 0, .1, 1)',
           style({
-            top: '-10%',
+            transform: 'translateY(0)',
             borderRadius: '0 0 10% 10%',
           })
         ),

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostListener,
   OnInit,
   inject,
 } from '@angular/core';
@@ -43,8 +44,22 @@ export class AppComponent implements OnInit {
   private readonly layoutService = inject(LayoutService);
   isMenuOpen$ = this.layoutService.isMenuOpen$;
   isPreLoaded = new BehaviorSubject<boolean>(false);
+  isMobile: boolean = false;
 
-  ngOnInit(): void {
-    setTimeout(() => this.isPreLoaded.next(true), 1500);
+
+  @HostListener('window:resize')
+  onResize() {
+    this.checkIfMobile(); 
   }
+
+ ngOnInit(): void {
+    setTimeout(() => this.isPreLoaded.next(true), 1500);
+    this.checkIfMobile()
+  }
+
+  checkIfMobile() {
+    this.isMobile = window.innerWidth < 768; 
+  }
+
+ 
 }
