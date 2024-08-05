@@ -11,14 +11,13 @@
 <app-sidebar></app-sidebar> @if (isMenuOpen$ | async){<app-menu
   @openDelay
 ></app-menu
+
 >}
+  @if((isMobile$ | async)=== false){<app-background-smoke></app-background-smoke>}
 
-@if(!isMobile){
-  <app-background-smoke></app-background-smoke>
-}
-
+<app-magnetic-cursor/>
 <div class="wrapper">
   <router-outlet />
   <app-footer></app-footer>
 </div>
-<app-magnetic-cursor/>
+

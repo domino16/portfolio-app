@@ -34,7 +34,8 @@ import { MagneticCursorDirective } from './shared/directives/cursor/magnetic-cur
     LoaderComponent,
     FooterComponent,
     MagneticCursorComponent,
-    MagneticCursorDirective
+    MagneticCursorDirective,
+    AsyncPipe
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -44,23 +45,10 @@ import { MagneticCursorDirective } from './shared/directives/cursor/magnetic-cur
 export class AppComponent implements OnInit {
   private readonly layoutService = inject(LayoutService);
   isMenuOpen$ = this.layoutService.isMenuOpen$;
+  isMobile$ = this.layoutService.mobileWidth$
   isPreLoaded = new BehaviorSubject<boolean>(false);
-  isMobile: boolean = false;
 
-
-  @HostListener('window:resize')
-  onResize() {
-    this.checkIfMobile(); 
-  }
-
- ngOnInit(): void {
+  ngOnInit(): void {
     setTimeout(() => this.isPreLoaded.next(true), 1500);
-    this.checkIfMobile()
   }
-
-  checkIfMobile() {
-    this.isMobile = window.innerWidth < 768; 
-  }
-
- 
 }

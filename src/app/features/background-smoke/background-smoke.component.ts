@@ -4,13 +4,15 @@ import {
   Component,
   ElementRef,
   HostListener,
+  inject,
   ViewChild,
 } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-background-smoke',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './background-smoke.component.html',
   styleUrl: './background-smoke.component.scss',
 })
@@ -80,6 +82,7 @@ export class BackgroundSmokeComponent
   }
 
 
+
   ngAfterViewInit() {
     this.initdata();
     this.update();
@@ -106,6 +109,8 @@ export class BackgroundSmokeComponent
       this.pointer.y = y;
     }
   }
+
+
 
   initdata() {
     this.gl =
