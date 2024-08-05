@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { introComponent } from './intro/intro.component';
+import { IntroComponent } from './intro/intro.component';
 import { SkillsComponent } from './skills/skills.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
@@ -9,7 +9,7 @@ import { ContactSectionComponent } from './contact-section/contact-section.compo
   selector: 'app-home',
   standalone: true,
   imports: [
-    introComponent,
+    IntroComponent,
     SkillsComponent,
     ProjectsComponent,
     ContactSectionComponent,

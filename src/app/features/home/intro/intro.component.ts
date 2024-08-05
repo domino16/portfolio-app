@@ -17,7 +17,7 @@ import {
   styleUrl: './intro.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class introComponent implements AfterViewInit {
+export class IntroComponent implements AfterViewInit {
   private readonly renderer = inject(Renderer2);
 
   @ViewChild('canvas')
