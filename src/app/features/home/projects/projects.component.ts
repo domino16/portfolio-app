@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MagneticElementToCursorDirective } from '../../../shared/directives/cursor/magnetic-element-to-cursor.directive';
-import { MagneticLinkButtonComponent } from '../../../shared/components/magnetic-link-button/magnetic-link-button.component';
+import { MagneticLinkButtonComponent } from '../../../ui/atoms/magnetic-link-button/magnetic-link-button.component';
 import { MagneticOptions } from '../../../core/interfaces/magneticOptions';
 import { HeadingScrollDirective } from '../../../shared/directives/animations/heading-scroll.directive';
 

@@ -7,7 +7,7 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
-import { MagneticLinkButtonComponent } from '../../../shared/components/magnetic-link-button/magnetic-link-button.component';
+import { MagneticLinkButtonComponent } from '../../../ui/atoms/magnetic-link-button/magnetic-link-button.component';
 import { HeadingScrollDirective } from '../../../shared/directives/animations/heading-scroll.directive';
 import { GoogleMap, GoogleMapsModule, MapMarker } from '@angular/google-maps';
 import { NgFor } from '@angular/common';

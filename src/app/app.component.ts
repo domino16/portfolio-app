@@ -12,13 +12,13 @@ import { HomeComponent } from './features/home/home.component';
 import { AsyncPipe } from '@angular/common';
 import { LayoutService } from './core/services/layout.service';
 import { BackgroundSmokeComponent } from './features/background-smoke/background-smoke.component';
-import { MagneticCursorDirective } from './shared/directives/cursor/magnetic-cursor.directive';
 import { ProjectsComponent } from './features/home/projects/projects.component';
 import { overlayAnimationTrigger } from './shared/animations/overlay-animations';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { BehaviorSubject } from 'rxjs';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { AnimationEvent } from '@angular/animations';
+import { MagneticCursorComponent } from './ui/organism/magnetic-cursor/magnetic-cursor.component';
+import { MagneticCursorDirective } from './shared/directives/cursor/magnetic-cursor.directive';
 
 @Component({
   selector: 'app-root',
@@ -30,10 +30,11 @@ import { AnimationEvent } from '@angular/animations';
     HomeComponent,
     AsyncPipe,
     BackgroundSmokeComponent,
-    MagneticCursorDirective,
     ProjectsComponent,
     LoaderComponent,
     FooterComponent,
+    MagneticCursorComponent,
+    MagneticCursorDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

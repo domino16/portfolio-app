@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { MagneticElementToCursorDirective } from '../../directives/cursor/magnetic-element-to-cursor.directive';
+import { MagneticElementToCursorDirective } from '../../../shared/directives/cursor/magnetic-element-to-cursor.directive';
 
 @Component({
   selector: 'app-magnetic-link-button',

@@ -1,10 +1,8 @@
 import {
-  AfterViewInit,
   Directive,
   ElementRef,
   Input,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { gsap } from 'gsap';
 import { Router } from '@angular/router';
@@ -24,7 +22,7 @@ class CursorOptions {
   standalone: true,
 })
 export class MagneticCursorDirective implements OnInit {
-  cursorEl!: HTMLDivElement;
+  cursorEl!: HTMLElement;
   cursorTextEl!: HTMLDivElement;
   hostEl!: HTMLElement;
   visible!: boolean;
@@ -56,7 +54,7 @@ export class MagneticCursorDirective implements OnInit {
     this.router.events.subscribe((event) => {
       //events.type 1 is navigationEnd
       if (event.type === 1) {
-        this.hostEl = this.elRef.nativeElement.parentElement;
+        this.hostEl = this.cursorEl.parentElement?.parentElement!;
         this.initEvents();
       }
     });
